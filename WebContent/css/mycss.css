@@ -1,0 +1,14 @@
+.view {
+    background: url("http://localhost:8080/Orphan/WebContent/image/c.jpg")no-repeat center center;
+    background-size: cover;
+}
+
+
+.w-auto {
+    width: auto;
+}
+
+.table-fixed {
+    table-layout: fixed;
+    overflow: hidden;
+}

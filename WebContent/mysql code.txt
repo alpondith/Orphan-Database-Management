@@ -1,0 +1,43 @@
+CREATE DATABASE db;
+use db;
+CREATE TABLE orphan
+(
+    o_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    o_name VARCHAR(40),
+    o_address VARCHAR(200),
+    o_description TEXT
+);
+CREATE UNIQUE INDEX orphan_o_id_uindex ON orphan (o_id);
+
+
+CREATE TABLE admin
+(
+    a_id VARCHAR(40) PRIMARY KEY NOT NULL ,
+    a_password VARCHAR(200),
+    a_name VARCHAR(40),
+    a_address TEXT
+);
+CREATE UNIQUE INDEX admin_a_id_uindex ON admin (a_id);
+INSERT INTO admin (a_id, a_password, a_name, a_address) VALUES ('a', 'a', 'MR. A', 'World');
+
+CREATE TABLE doner
+(
+    d_id VARCHAR(40) PRIMARY KEY NOT NULL,
+    d_name VARCHAR(40),
+    d_address VARCHAR(200),
+    d_number VARCHAR(40)
+);
+CREATE UNIQUE INDEX doner_d_id_uindex ON doner (d_id);
+
+
+CREATE TABLE donation
+(
+    dt_id VARCHAR(40),
+    dt_date DATE,
+    dt_time TIME,
+    dt_amount INT(20),
+    CONSTRAINT donation_dt_id_dt_date_dt_time_pk PRIMARY KEY (dt_id, dt_date, dt_time),
+    CONSTRAINT donation_doner_d_id_fk FOREIGN KEY (dt_id) REFERENCES doner (d_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
